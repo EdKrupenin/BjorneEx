@@ -57,52 +57,30 @@ struct String {
 	
 	Proxy operator[] (size_t index) const
 	{
-		++index;
 		return Proxy(str,index);
 	}
 	
 	struct Proxy
 	{
-		char* r_string;
 		size_t start;
-		Proxy(char* real_string, size_t start) :r_string(real_string), start(start){}
-		~Proxy() { }
+		char* r_str;
+		Proxy(char* str,size_t start) :start(start), r_str(str){}
 		String operator[](size_t index) const
 		{
-			String answer{};
-			//for (size_t i = start; i < index; ++i)
-			//	answer.append((r_string + i));
-			return answer;
+			String answer = String();
+			const size_t length = index - start;
+			if ( length > 0)	
+			{
+				char* out_str = new char[length+1]();
+				for (size_t i = 0; i < length; i++) {
+					out_str[i] = r_str[i+start];
+				}				
+				answer = String(out_str);
+				delete[] out_str;
+			}
+			return  answer;
 		}
 	};
-
-	/*Proxy operator[] (size_t index) const
-	{
-		++index;
-		return Proxy(str,index);
-	}
-
-	struct Proxy
-	{
-		char* r_string;
-		size_t start;
-		Proxy(char *real_string, size_t start) : r_string(real_string), start(start) {};
-		~Proxy() { };
-		String operator[](size_t index) const
-		{
-			char* out {};
-			size_t numof = index-start;
-			if (numof > 0) {
-				memcpy(out, r_string, sizeof(char) * numof);
-				String answer{ out };
-				return answer;
-			}
-			else
-				return String();
-		}
-	};*/
-
-	
 
 };
 
@@ -111,6 +89,9 @@ TEST(ThemeFive, TestFiveTwo) {
 	String const hello("hello");
 	String const hell = hello[0][4]; // теперь в hell хранится подстрока "hell"
 	String const ell = hello[1][4]; // теперь в ell хранится подстрока "ell"
-    EXPECT_EQ(1, 1);
+	String const zero = hello[3][3];
+	EXPECT_STREQ(hell.str, "hell");
+	EXPECT_STREQ(ell.str, "ell");
+	EXPECT_STREQ(zero.str, "");
     EXPECT_TRUE(true);
 }

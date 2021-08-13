@@ -108,9 +108,5 @@ struct PrintVisitor : IVisitor {
 /*
 int main()
 {
-	IExpression* sube = new BinaryOperation(new Number(4.5), '+', new Number(5));
-	IExpression const* expr = new BinaryOperation(new Number(3), '*', sube);
-	PrintVisitor  visitor;
-	expr->visit(&visitor);
-	return 0; 
+
 }
