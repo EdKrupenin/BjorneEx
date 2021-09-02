@@ -255,5 +255,4 @@ TEST(ThemeFive, TestFiveThree)
 	Expression const* expr = new BinaryOperation(new Number(3), '*', sube);
 	PrintVisitor  visitor;
 	expr->visit(&visitor);
-	return 0;
 }
