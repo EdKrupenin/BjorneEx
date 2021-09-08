@@ -39,6 +39,9 @@
     <ClCompile Include="5.2.cpp" />
     <ClCompile Include="5.3.cpp" />
     <ClCompile Include="6.1.cpp" />
+    <ClCompile Include="6.11.cpp" />
+    <ClCompile Include="6.2.cpp" />
+    <ClCompile Include="Temolate.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
